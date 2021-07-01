@@ -1,0 +1,447 @@
+--BAQUE DELGADO JULEYDY MAYELINA          5TO "B"
+-- CREACIÓN DE TABLAS
+
+/*==============================================================*/
+/* Table1: CLIENTE                                               */
+/*==============================================================*/
+create table CLIENTE (
+   CLI_ID               INT4                 not null,
+   CLI_NOMBRE           CHAR(50)             not null,
+   CLI_APELLIDO         CHAR(50)             not null,
+   constraint PK_CLIENTE primary key (CLI_ID)
+);
+
+-----------------------------------------------------------------
+insert into CLIENTE (CLI_ID, CLI_NOMBRE, CLI_APELLIDO)
+VALUES (1, 'JULEYDY','BAQUE');
+insert into CLIENTE (CLI_ID, CLI_NOMBRE, CLI_APELLIDO)
+VALUES (2, 'FREDDY', 'DELGADO');
+insert into CLIENTE (CLI_ID, CLI_NOMBRE, CLI_APELLIDO)
+VALUES (3, 'HIRIAN', 'MUENTES');
+insert into CLIENTE (CLI_ID, CLI_NOMBRE, CLI_APELLIDO)
+VALUES (4, 'PAULINA', 'PALMA');
+insert into CLIENTE (CLI_ID, CLI_NOMBRE, CLI_APELLIDO)
+VALUES (5, 'RAÚL', 'CEDEÑO');
+
+select *from cliente
+
+/*==============================================================*/
+/* Table2: EMPLEADO                                              */
+/*==============================================================*/
+create table EMPLEADO (
+   EM_ID                INT4                 not null,
+   TIPO_ID              INT4                 not null,
+   FUNERARIA_ID         INT4                 not null,
+   EM_NOMBRE            TEXT                 not null,
+   EM_APELLIDO          TEXT                 not null,
+   EM_DIRECCION         TEXT                 not null,
+   EM_FNACIMIENTO       DATE                 not null,
+   EM_FINGRESOLABORAL   DATE                 not null,
+   constraint PK_EMPLEADO primary key (EM_ID)
+);
+----------------------------------------------------------------
+insert into EMPLEADO (EM_ID, TIPO_ID, FUNERARIA_ID, EM_NOMBRE, EM_APELLIDO, EM_DIRECCION, 
+					  EM_FNACIMIENTO, EM_FINGRESOLABORAL)
+					  VALUES (1, 1, 1, 'ODALYS', 'ZAMBRANO', 'Montecristi Colorado calle  de mayo', '1999-04-24', '2013-01-05');
+insert into EMPLEADO (EM_ID, TIPO_ID, FUNERARIA_ID, EM_NOMBRE, EM_APELLIDO, EM_DIRECCION,
+					  EM_FNACIMIENTO, EM_FINGRESOLABORAL)
+					  VALUES (2, 1, 1, 'PAMELA', 'DELGADO', 'calle 101 av 14 y 16','2001-06-16','2015-11-01');
+insert into EMPLEADO (EM_ID, TIPO_ID, FUNERARIA_ID, EM_NOMBRE, EM_APELLIDO, EM_DIRECCION, 
+					  EM_FNACIMIENTO, EM_FINGRESOLABORAL)
+					  VALUES (3, 1, 1, 'CARLOS','MONCAYO','calle 120 av 22','1995-01-17','2012-05-01');
+insert into EMPLEADO (EM_ID, TIPO_ID, FUNERARIA_ID, EM_NOMBRE, EM_APELLIDO, EM_DIRECCION, 
+					  EM_FNACIMIENTO, EM_FINGRESOLABORAL)
+					  VALUES (4, 2, 1, 'LADY','MACÍAS','Barrio Santa Martha','1998-08-09','2011-11-09' );
+insert into EMPLEADO (EM_ID, TIPO_ID, FUNERARIA_ID, EM_NOMBRE, EM_APELLIDO, EM_DIRECCION,
+					  EM_FNACIMIENTO, EM_FINGRESOLABORAL)
+					  VALUES (5, 2, 1, 'TAYLOR','RIVERA','Barrio Cuba','1975-12-25','2009-02-20');
+
+SELECT *FROM EMPLEADO
+
+/*==============================================================*/
+/* Table3: TIPO_EMPLEADO                                         */
+/*==============================================================*/
+create table TIPO_EMPLEADO (
+   TIPO_ID              INT4                 not null,
+   TIPO_DESCRIPCION     CHAR(30)             not null,
+   constraint PK_TIPO_EMPLEADO primary key (TIPO_ID)
+);
+-----------------------------------------------------------------
+insert into TIPO_EMPLEADO (TIPO_ID, TIPO_DESCRIPCION)
+VALUES (1, 'VENDEDOR');
+insert into TIPO_EMPLEADO (TIPO_ID, TIPO_DESCRIPCION)
+VALUES (2, 'PERSONAL DE MANTENIMIENTO');
+
+SELECT *FROM TIPO_EMPLEADO
+/*==============================================================*/
+/* Table4: FUNERARIA                                             */
+/*==============================================================*/
+create table FUNERARIA (
+   FUNERARIA_ID         INT4                 not null,
+   FUNERARIA_NOMBRE     CHAR(30)             not null,
+   constraint PK_FUNERARIA primary key (FUNERARIA_ID)
+);
+
+-----------------------------------------------------------------
+insert into FUNERARIA (FUNERARIA_ID, FUNERARIA_NOMBRE)
+VALUES (1, 'FUNERARIA "ETERNIDAD S.A" ');
+
+SELECT *FROM FUNERARIA
+
+/*==============================================================*/
+/* Table5: PROFESIONAL_REGISTRADO                                */
+/*==============================================================*/
+create table PROFESIONAL_REGISTRADO (
+   PROFESIONAL_ID       INT4                 not null,
+   EM_ID                INT4                 null,
+   PROFESIONAL_DESCRIPCION VARCHAR(50)          not null,
+   constraint PK_PROFESIONAL_REGISTRADO primary key (PROFESIONAL_ID)
+);
+-----------------------------------------------------------------
+insert into PROFESIONAL_REGISTRADO (PROFESIONAL_ID, EM_ID, PROFESIONAL_DESCRIPCION)
+VALUES(1, 1, 'PROFESIONAL DE EMBALSAMAMIENTO');
+insert into PROFESIONAL_REGISTRADO (PROFESIONAL_ID, EM_ID, PROFESIONAL_DESCRIPCION)
+VALUES(2, 2, 'PROFESIONAL DE MAQUILLAJE');
+insert into PROFESIONAL_REGISTRADO (PROFESIONAL_ID, EM_ID, PROFESIONAL_DESCRIPCION)
+VALUES(3, 3, 'PROFESIONAL DE EMBALSAMAMIENTO');
+insert into PROFESIONAL_REGISTRADO (PROFESIONAL_ID, EM_ID, PROFESIONAL_DESCRIPCION)
+VALUES(4, 4, 'PROFESIONAL DE MAQUILLAJE');
+insert into PROFESIONAL_REGISTRADO (PROFESIONAL_ID, EM_ID, PROFESIONAL_DESCRIPCION)
+VALUES(5, 5, 'PROFESIONAL DE EMBALSAMAMIENTO');
+
+SELECT *FROM PROFESIONAL_REGISTRADO
+
+/*==============================================================*/
+/* Table6: VELATORIO                                             */
+/*==============================================================*/
+create table VELATORIO (
+   VELATORIO_ID         INT4                 not null,
+   VELATORIO_DIMENSIONES CHAR(100)           not null,
+   VELATORIO_DIRECCION  CHAR(100)            not null,
+   VELATORIO_CAP_PERSONA DECIMAL             not null,
+   VELATORIO_HRS_RESERVA TIME                not null,
+   constraint PK_VELATORIO primary key (VELATORIO_ID)
+);
+-----------------------------------------------------------------
+insert into VELATORIO (VELATORIO_ID, VELATORIO_DIMENSIONES, VELATORIO_DIRECCION, VELATORIO_CAP_PERSONA, VELATORIO_HRS_RESERVA)
+VALUES(1, '9x10','Manta calle 13 av 101','10.00','14:00:00');
+insert into VELATORIO (VELATORIO_ID, VELATORIO_DIMENSIONES, VELATORIO_DIRECCION, VELATORIO_CAP_PERSONA, VELATORIO_HRS_RESERVA)
+VALUES(2, '20x15','Manta calle 13 av 101','20.00','15:00:00');
+insert into VELATORIO (VELATORIO_ID, VELATORIO_DIMENSIONES, VELATORIO_DIRECCION, VELATORIO_CAP_PERSONA, VELATORIO_HRS_RESERVA)
+VALUES(3,'25x15','Manta calle 13 av 101','45.00','16:00:00');
+
+SELECT *FROM VELATORIO
+/*==============================================================*/
+/* Table7: SERVICIO                                              */
+/*==============================================================*/
+create table SERVICIO (
+   SER_ID               INT4                 not null,
+   VELATORIO_ID         INT4                 null,
+   FUNERARIA_ID         INT4                 null,
+   SER_ACOMPANAMIENTO_MUSIC CHAR(2)          null,
+   SER_COMIDA           CHAR(2)              null,
+   SER_TRANS_CEMENTERIO CHAR(2)              null,
+   SER_VENTA_ATAUD      CHAR(2)              null,
+   SER_MAQUINA_CAFE     CHAR(2)              null,
+   SER_COSTOTOTAL       FLOAT8               null,
+   constraint PK_SERVICIO primary key (SER_ID)
+);
+-----------------------------------------------------------------
+insert into SERVICIO (SER_ID, VELATORIO_ID, FUNERARIA_ID, SER_ACOMPANAMIENTO_MUSIC, SER_COMIDA, 
+					  SER_TRANS_CEMENTERIO, SER_VENTA_ATAUD, SER_MAQUINA_CAFE, SER_COSTOTOTAL)
+					  VALUES(1,1,1, 'SI', NULL, 'SI', 'SI', 'SI', 250.00);
+insert into SERVICIO (SER_ID, VELATORIO_ID, FUNERARIA_ID, SER_ACOMPANAMIENTO_MUSIC, SER_COMIDA, 
+					  SER_TRANS_CEMENTERIO, SER_VENTA_ATAUD, SER_MAQUINA_CAFE, SER_COSTOTOTAL)
+					  VALUES(2, 2, 1, NULL, NULL, 'SI', NULL, 'SI', 220.00);
+insert into SERVICIO (SER_ID, VELATORIO_ID, FUNERARIA_ID, SER_ACOMPANAMIENTO_MUSIC, SER_COMIDA, 
+					  SER_TRANS_CEMENTERIO, SER_VENTA_ATAUD, SER_MAQUINA_CAFE, SER_COSTOTOTAL)
+					  VALUES(3, 3, 1, 'SI', 'SI', 'SI', 'SI', 'SI', 300.00);
+insert into SERVICIO (SER_ID, VELATORIO_ID, FUNERARIA_ID, SER_ACOMPANAMIENTO_MUSIC, SER_COMIDA, 
+					  SER_TRANS_CEMENTERIO, SER_VENTA_ATAUD, SER_MAQUINA_CAFE, SER_COSTOTOTAL)
+					  VALUES(4, 1, 1, 'SI', 'SI', NULL, NULL, 'SI', 200.00);
+insert into SERVICIO (SER_ID, VELATORIO_ID, FUNERARIA_ID, SER_ACOMPANAMIENTO_MUSIC, SER_COMIDA, 
+					  SER_TRANS_CEMENTERIO, SER_VENTA_ATAUD, SER_MAQUINA_CAFE, SER_COSTOTOTAL)
+					  VALUES(5, 2, 1, NULL, NULL, NULL, 'SI', 'SI', 150.50);
+SELECT *FROM SERVICIO
+
+/*==============================================================*/
+/* Table8: FALLECIDO                                             */
+/*==============================================================*/
+create table FALLECIDO (
+   FAL_ID               INT4                 not null,
+   VELATORIO_ID         INT4                 null,
+   CMUERTE_ID           INT4                 null,
+   FAL_NOMBRE           CHAR(50)             not null,
+   FAL_APELLIDO         CHAR(50)             not null,
+   FAL_GENERO           CHAR(30)             not null,
+   FAL_FECHA_NAC        DATE                 not null,
+   FAL_DIFUNCION        CHAR(100)            not null,
+   FAL_HRS_DIFUNCION    TIME                 not null,
+   FAL_HRS_EMBALSAMAMIENTO TIME              not null,
+   constraint PK_FALLECIDO primary key (FAL_ID)
+);
+-----------------------------------------------------------------
+insert into FALLECIDO (FAL_ID, VELATORIO_ID, CMUERTE_ID, FAL_NOMBRE, FAL_APELLIDO, FAL_GENERO,
+					  FAL_FECHA_NAC, FAL_DIFUNCION, FAL_HRS_DIFUNCION, FAL_HRS_EMBALSAMAMIENTO)
+					  VALUES(1, 1, 1, 'Alejandrina','Muentes','Femenino','11-03-1952',
+							 '29-03-2011','13:45:15','14:41:15' );
+insert into FALLECIDO (FAL_ID, VELATORIO_ID, CMUERTE_ID, FAL_NOMBRE, FAL_APELLIDO, FAL_GENERO,
+					  FAL_FECHA_NAC, FAL_DIFUNCION, FAL_HRS_DIFUNCION, FAL_HRS_EMBALSAMAMIENTO)
+					  VALUES(2, 2, 1, 'Benilda','López','Femenino','23-05-1960',
+							 '25-07-2015','01:35:25','02:15:15');
+insert into FALLECIDO (FAL_ID, VELATORIO_ID, CMUERTE_ID, FAL_NOMBRE, FAL_APELLIDO, FAL_GENERO,
+					  FAL_FECHA_NAC, FAL_DIFUNCION, FAL_HRS_DIFUNCION, FAL_HRS_EMBALSAMAMIENTO)
+					  VALUES(3, 3, 3, 'Ramón','Delgado','Masculino','31-12-1945',
+							 '09-09-2020','11:45:15','12:50:11');
+insert into FALLECIDO (FAL_ID, VELATORIO_ID, CMUERTE_ID, FAL_NOMBRE, FAL_APELLIDO, FAL_GENERO,
+					  FAL_FECHA_NAC, FAL_DIFUNCION, FAL_HRS_DIFUNCION, FAL_HRS_EMBALSAMAMIENTO)
+					  VALUES(4, 1, 2, 'Ramón','Mero','Masculino','12-05-1955',
+							 '12-06-2020','10:35:15','11:11:15');
+insert into FALLECIDO (FAL_ID, VELATORIO_ID, CMUERTE_ID, FAL_NOMBRE, FAL_APELLIDO, FAL_GENERO,
+					  FAL_FECHA_NAC, FAL_DIFUNCION, FAL_HRS_DIFUNCION, FAL_HRS_EMBALSAMAMIENTO)
+					  VALUES(5, 2, 3, 'José','Delgado','Masculino','06-05-1970',
+							 '23-04-2020','15:35:15','16:41:15');
+insert into FALLECIDO (FAL_ID, VELATORIO_ID, CMUERTE_ID, FAL_NOMBRE, FAL_APELLIDO, FAL_GENERO,
+					  FAL_FECHA_NAC, FAL_DIFUNCION, FAL_HRS_DIFUNCION, FAL_HRS_EMBALSAMAMIENTO)
+					  VALUES(6, 3, 4, 'Marlon', 'Delgado', 'Masculino', '23-11-1975',
+							'23-06-2021', '12:30:05','16:30:00');
+insert into FALLECIDO (FAL_ID, VELATORIO_ID, CMUERTE_ID, FAL_NOMBRE, FAL_APELLIDO, FAL_GENERO,
+					  FAL_FECHA_NAC, FAL_DIFUNCION, FAL_HRS_DIFUNCION, FAL_HRS_EMBALSAMAMIENTO)
+					  VALUES(7, 1, 5, 'Carmen','López','Femenino','21-01-1982',
+							 '21-04-2020','16:45:15','17:30:25');
+insert into FALLECIDO (FAL_ID, VELATORIO_ID, CMUERTE_ID, FAL_NOMBRE, FAL_APELLIDO, FAL_GENERO,
+					  FAL_FECHA_NAC, FAL_DIFUNCION, FAL_HRS_DIFUNCION, FAL_HRS_EMBALSAMAMIENTO)
+					  VALUES(8, 2, 1, 'Cristhian', 'Mero', 'Masculino', '22-12-1971',
+							'20-04-2020','16:45:15','17:30:25');
+insert into FALLECIDO (FAL_ID, VELATORIO_ID, CMUERTE_ID, FAL_NOMBRE, FAL_APELLIDO, FAL_GENERO,
+					  FAL_FECHA_NAC, FAL_DIFUNCION, FAL_HRS_DIFUNCION, FAL_HRS_EMBALSAMAMIENTO)
+					  VALUES(9, 3, 4, 'Rosa', 'Franco', 'Femenino', '22-05-1959',
+							'10-12-2020','16:35:00','17:30:01');
+insert into FALLECIDO (FAL_ID, VELATORIO_ID, CMUERTE_ID, FAL_NOMBRE, FAL_APELLIDO, FAL_GENERO,
+					  FAL_FECHA_NAC, FAL_DIFUNCION, FAL_HRS_DIFUNCION, FAL_HRS_EMBALSAMAMIENTO)
+					  VALUES(10, 1, 4, 'Ruperto', 'Muentes', 'Masculino', '16-06-1962',
+							'10-02-2019','12:30:10','14:40:59');
+							
+SELECT *FROM FALLECIDO
+/*==============================================================*/
+/* Table9: CAUSA_MUERTE                                          */
+/*==============================================================*/
+create table CAUSA_MUERTE (
+   CMUERTE_ID           INT4                 not null,
+   FAL_ID               INT4                 null,
+   CMUERTE_COVID        CHAR(2)              null,
+   CMUERTE_CANCER       CHAR(2)              null,
+   CMUERTE_PARORESPIRATORIA CHAR(2)          null,
+   CMUERTE_DERRAME      CHAR(2)              null,
+   CMUERTE_PULMONIA     CHAR(2)              null,
+   constraint PK_CAUSA_MUERTE primary key (CMUERTE_ID)
+);
+-----------------------------------------------------------------
+insert into CAUSA_MUERTE (CMUERTE_ID, FAL_ID, CMUERTE_COVID, CMUERTE_CANCER, CMUERTE_PARORESPIRATORIA, 
+						  CMUERTE_DERRAME, CMUERTE_PULMONIA)
+						  VALUES (1, 1, 'SI', NULL, NULL, NULL, NULL);
+insert into CAUSA_MUERTE (CMUERTE_ID, FAL_ID, CMUERTE_COVID, CMUERTE_CANCER, CMUERTE_PARORESPIRATORIA, 
+						  CMUERTE_DERRAME, CMUERTE_PULMONIA)
+						  VALUES (2, 2, 'SI', NULL, NULL, NULL, NULL);
+insert into CAUSA_MUERTE (CMUERTE_ID, FAL_ID, CMUERTE_COVID, CMUERTE_CANCER, CMUERTE_PARORESPIRATORIA, 
+						  CMUERTE_DERRAME, CMUERTE_PULMONIA)
+						  VALUES (3, 3, NULL, NULL, 'SI', NULL, NULL);
+insert into CAUSA_MUERTE (CMUERTE_ID, FAL_ID, CMUERTE_COVID, CMUERTE_CANCER, CMUERTE_PARORESPIRATORIA, 
+						  CMUERTE_DERRAME, CMUERTE_PULMONIA)
+						  VALUES (4, 4, NULL, 'SI', NULL, NULL, NULL);
+insert into CAUSA_MUERTE (CMUERTE_ID, FAL_ID, CMUERTE_COVID, CMUERTE_CANCER, CMUERTE_PARORESPIRATORIA, 
+						  CMUERTE_DERRAME, CMUERTE_PULMONIA)
+						  VALUES (5, 5, NULL, NULL, 'SI', NULL, NULL);
+insert into CAUSA_MUERTE (CMUERTE_ID, FAL_ID, CMUERTE_COVID, CMUERTE_CANCER, CMUERTE_PARORESPIRATORIA, 
+						  CMUERTE_DERRAME, CMUERTE_PULMONIA)
+						  VALUES (6, 6, NULL, NULL, NULL, 'SI', NULL);
+insert into CAUSA_MUERTE (CMUERTE_ID, FAL_ID, CMUERTE_COVID, CMUERTE_CANCER, CMUERTE_PARORESPIRATORIA, 
+						  CMUERTE_DERRAME, CMUERTE_PULMONIA)
+						  VALUES (7, 7, NULL, NULL, NULL, NULL, 'SI');
+insert into CAUSA_MUERTE (CMUERTE_ID, FAL_ID, CMUERTE_COVID, CMUERTE_CANCER, CMUERTE_PARORESPIRATORIA, 
+						  CMUERTE_DERRAME, CMUERTE_PULMONIA)
+						  VALUES (8, 8, 'SI', NULL, NULL, NULL, NULL);
+insert into CAUSA_MUERTE (CMUERTE_ID, FAL_ID, CMUERTE_COVID, CMUERTE_CANCER, CMUERTE_PARORESPIRATORIA, 
+						  CMUERTE_DERRAME, CMUERTE_PULMONIA)
+						  VALUES (9, 9, NULL, NULL, NULL, 'SI', NULL);
+insert into CAUSA_MUERTE (CMUERTE_ID, FAL_ID, CMUERTE_COVID, CMUERTE_CANCER, CMUERTE_PARORESPIRATORIA, 
+						  CMUERTE_DERRAME, CMUERTE_PULMONIA)
+						  VALUES (10, 10, NULL, NULL, NULL, 'SI', NULL);
+						  
+SELECT *FROM CAUSA_MUERTE
+/*==============================================================*/
+/* Table10: FACTURA_DETALLE                                       */
+/*==============================================================*/
+create table FACTURA_DETALLE (
+   FD_ID                INT4                 not null,
+   FAC_ID               INT4                 not null,
+   FD_OBSERVACION       CHAR(100)            not null,
+   constraint PK_FACTURA_DETALLE primary key (FD_ID)
+);
+-----------------------------------------------------------------
+insert into FACTURA_DETALLE (FD_ID, FAC_ID, FD_OBSERVACION)
+VALUES (1, 1, 'SIN OBSERVACIONES');
+insert into FACTURA_DETALLE (FD_ID, FAC_ID, FD_OBSERVACION)
+VALUES (2, 2, 'SIN OBSERVACIONES');
+insert into FACTURA_DETALLE (FD_ID, FAC_ID, FD_OBSERVACION)
+VALUES (3, 3, 'SIN OBSERVACIONES');
+insert into FACTURA_DETALLE (FD_ID, FAC_ID, FD_OBSERVACION)
+VALUES (4, 4, 'SIN OBSERVACIONES');
+insert into FACTURA_DETALLE (FD_ID, FAC_ID, FD_OBSERVACION)
+VALUES (5, 5, 'SIN OBSERVACIONES');
+insert into FACTURA_DETALLE (FD_ID, FAC_ID, FD_OBSERVACION)
+VALUES (6, 6, 'SIN OBSERVACIONES');
+
+SELECT *FROM FACTURA_DETALLE
+
+/*==============================================================*/
+/* Table11: FACTURA                                               */
+/*==============================================================*/
+create table FACTURA (
+   FAC_ID               INT4                 not null,
+   FUNERARIA_ID         INT4                 not null,
+   CLI_ID               INT4                 not null,
+   FAC_FECHA            DATE                 not null,
+   constraint PK_FACTURA primary key (FAC_ID)
+);
+-----------------------------------------------------------------
+insert into FACTURA (FAC_ID, FUNERARIA_ID, CLI_ID, FAC_FECHA)
+VALUES (1, 1, 1, '2020-05-14');
+insert into FACTURA (FAC_ID, FUNERARIA_ID, CLI_ID, FAC_FECHA)
+VALUES (2, 1, 2, '2020-06-15');
+insert into FACTURA (FAC_ID, FUNERARIA_ID, CLI_ID, FAC_FECHA)
+VALUES (3, 1, 3, '2020-06-10');
+insert into FACTURA (FAC_ID, FUNERARIA_ID, CLI_ID, FAC_FECHA)
+VALUES (4, 1, 4, '2021-03-15');
+insert into FACTURA (FAC_ID, FUNERARIA_ID, CLI_ID, FAC_FECHA)
+VALUES (5, 1, 5, '2021-04-19');
+insert into FACTURA (FAC_ID, FUNERARIA_ID, CLI_ID, FAC_FECHA)
+VALUES (6, 1, 5, '2021-04-19');
+
+SELECT *FROM FACTURA
+
+/*==============================================================*/
+/* Table: RELATIONSHIP_11                                       */
+/*==============================================================*/
+create table RELATIONSHIP_11 (
+   EM_ID                INT4                 not null,
+   CLI_ID               INT4                 not null,
+   constraint PK_RELATIONSHIP_11 primary key (EM_ID, CLI_ID)
+);
+
+--LLAVES FORANEAS
+alter table CAUSA_MUERTE
+   add constraint FK_CAUSA_MU_CAUSA2_FALLECID foreign key (FAL_ID)
+      references FALLECIDO (FAL_ID)
+      on delete restrict on update restrict;
+
+alter table EMPLEADO
+   add constraint FK_EMPLEADO_TIENE_FUNERARI foreign key (FUNERARIA_ID)
+      references FUNERARIA (FUNERARIA_ID)
+      on delete restrict on update restrict;
+
+alter table EMPLEADO
+   add constraint FK_EMPLEADO_TIENE2_TIPO_EMP foreign key (TIPO_ID)
+      references TIPO_EMPLEADO (TIPO_ID)
+      on delete restrict on update restrict;
+
+alter table FACTURA
+   add constraint FK_FACTURA_GENERA_FUNERARI foreign key (FUNERARIA_ID)
+      references FUNERARIA (FUNERARIA_ID)
+      on delete restrict on update restrict;
+
+alter table FACTURA
+   add constraint FK_FACTURA_GENERA2_CLIENTE foreign key (CLI_ID)
+      references CLIENTE (CLI_ID)
+      on delete restrict on update restrict;
+
+alter table FACTURA_DETALLE
+   add constraint FK_FACTURA__GENERAFAC_FACTURA foreign key (FAC_ID)
+      references FACTURA (FAC_ID)
+      on delete restrict on update restrict;
+
+alter table FALLECIDO
+   add constraint FK_FALLECID_CAUSA_CAUSA_MU foreign key (CMUERTE_ID)
+      references CAUSA_MUERTE (CMUERTE_ID)
+      on delete restrict on update restrict;
+
+alter table FALLECIDO
+   add constraint FK_FALLECID_SE_HACE_VELATORI foreign key (VELATORIO_ID)
+      references VELATORIO (VELATORIO_ID)
+      on delete restrict on update restrict;
+
+alter table PROFESIONAL_REGISTRADO
+   add constraint FK_PROFESIO_TIENE3_EMPLEADO foreign key (EM_ID)
+      references EMPLEADO (EM_ID)
+      on delete restrict on update restrict;
+
+alter table RELATIONSHIP_11
+   add constraint FK_RELATION_RELATIONS_EMPLEADO foreign key (EM_ID)
+      references EMPLEADO (EM_ID)
+      on delete restrict on update restrict;
+
+alter table RELATIONSHIP_11
+   add constraint FK_RELATION_RELATIONS_CLIENTE foreign key (CLI_ID)
+      references CLIENTE (CLI_ID)
+      on delete restrict on update restrict;
+
+alter table SERVICIO
+   add constraint FK_SERVICIO_DA_VELATORI foreign key (VELATORIO_ID)
+      references VELATORIO (VELATORIO_ID)
+      on delete restrict on update restrict;
+
+alter table SERVICIO
+   add constraint FK_SERVICIO_OFRECE_FUNERARI foreign key (FUNERARIA_ID)
+      references FUNERARIA (FUNERARIA_ID)
+      on delete restrict on update restrict;
+
+--1.- El tiempo promedio transcurrido entre la defunción y el embalsamamiento de difuntos
+SELECT 
+	FAL_NOMBRE AS NOMBRE_FALLECIDO,
+	FAL_APELLIDO AS APELLIDO_FALLECIDO,
+	FAL_HRS_DIFUNCION AS HORA_DIFUNCION,
+	FAL_HRS_EMBALSAMAMIENTO AS HORA_EMBALSAMAMIENTO,
+	AVG (FALLECIDO.FAL_HRS_EMBALSAMAMIENTO-FALLECIDO.FAL_HRS_DIFUNCION) AS PROMEDIO_TRANSCURRIDO
+FROM
+	PUBLIC.FALLECIDO
+
+GROUP BY
+	FAL_NOMBRE,
+	FAL_APELLIDO,
+	FAL_HRS_DIFUNCION,
+	FAL_HRS_EMBALSAMAMIENTO
+
+--2.- Cantidad de veces por cada sala de velación en donde se alquile el espacio y no se venda el ataúd.
+SELECT 
+	VELATORIO.VELATORIO_ID AS NUMERO_DE_SALA,
+	COUNT(SERVICIO.SER_VENTA_ATAUD) AS ALQUILER_SIN_ATAUD
+FROM VELATORIO
+	INNER JOIN SERVICIO ON VELATORIO.VELATORIO_ID = SERVICIO.VELATORIO_ID
+WHERE 
+	SERVICIO.SER_VENTA_ATAUD IS NULL
+GROUP BY
+	NUMERO_DE_SALA
+
+--3.- Agentes vendedores que hayan logrado alquilar el espacio y vender el ataúd.
+SELECT 
+	EM_NOMBRE as nombre_empleado,
+	TIPO_DESCRIPCION as descripcion_tipo_empleado,
+	SER_VENTA_ATAUD as venta_ataud,
+	SERVICIO.VELATORIO_ID
+FROM 
+	PUBLIC.EMPLEADO
+	INNER JOIN PUBLIC.TIPO_EMPLEADO ON TIPO_EMPLEADO.TIPO_ID = EMPLEADO.TIPO_ID
+	INNER JOIN PUBLIC.SERVICIO ON SERVICIO.VELATORIO_ID = SERVICIO.VELATORIO_ID
+WHERE 
+	TIPO_EMPLEADO.TIPO_DESCRIPCION = 'VENDEDOR' AND SERVICIO.SER_VENTA_ATAUD = 'SI'
+
+--4.-Suma total de cada causa de defunción.
+SELECT 
+  COUNT(CAUSA_MUERTE.CMUERTE_CANCER) AS CANCER, 
+  COUNT(CAUSA_MUERTE.CMUERTE_COVID) AS COVID_19, 
+  COUNT(CAUSA_MUERTE.CMUERTE_PULMONIA) AS PULMONIA, 
+  COUNT(CAUSA_MUERTE.CMUERTE_DERRAME) AS DERRAME, 
+  COUNT(CAUSA_MUERTE.CMUERTE_PARORESPIRATORIA) AS PARO_CARDIACO
+FROM
+  PUBLIC.FALLECIDO
+  INNER JOIN PUBLIC.CAUSA_MUERTE ON FALLECIDO.FAL_ID = CAUSA_MUERTE.FAL_ID
