@@ -1,0 +1,16 @@
+/*Un procedimiento almacenado que devuelva los ingresos obtenidos 
+por servicios, de una sala que se le pase como parámetro. */
+CREATE OR REPLACE FUNCTION INGRESOS(IN SALA integer,OUT TOTAL_INGRESOS varchar)
+as 
+$$
+begin 
+/*CONSULTA QUE DEVUELVE LA SUMA TOTAL DE LOS INGRESOS DE CADA SALA*/
+	SELECT 
+	SUM(SERVICIO.SER_COSTOTOTAL) INTO TOTAL_INGRESOS
+	FROM VELATORIO
+	INNER JOIN SERVICIO ON SERVICIO.VELATORIO_ID=VELATORIO.VELATORIO_ID
+	WHERE SERVICIO.VELATORIO_ID=SALA;
+end
+$$
+language 'plpgsql';
+SELECT * FROM INGRESOS(3)
